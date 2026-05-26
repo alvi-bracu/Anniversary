@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Happy 1st Anniversary, My Love 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose: #e8788a;
+      --blush: #f5b8c4;
+      --cream: #fff8f0;
+      --gold: #c9a96e;
+      --deep: #6b2737;
+      --text: #3d1a24;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🌸%3C/text%3E%3C/svg%3E"), auto;
+    }
+
+    /* ── Floating petals ── */
+    .petal {
+      position: fixed;
+      top: -40px;
+      font-size: clamp(14px, 2vw, 22px);
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── Radial background ── */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 20% 20%, #fde8ed 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 80%, #fddde8 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, #fff5f0 0%, transparent 80%),
+        linear-gradient(160deg, #fff0f3 0%, #fff8ee 100%);
+    }
+
+    /* ── Sections ── */
+    section {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: var(--rose);
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 9vw, 110px);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--deep);
+      opacity: 0;
+      animation: fadeUp 1s ease 0.6s forwards;
+    }
+
+    .hero-title span {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--rose);
+      font-size: 0.55em;
+      margin-top: 8px;
+    }
+
+    .hero-date {
+      margin-top: 24px;
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--gold);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s forwards;
+    }
+
+    .hero-heart {
+      font-size: clamp(60px, 12vw, 120px);
+      display: block;
+      margin-top: 32px;
+      animation: heartbeat 1.5s ease-in-out infinite;
+      opacity: 0;
+      animation: heartbeat 1.5s ease-in-out 1.2s infinite, fadeUp 1s ease 1.2s forwards;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15%       { transform: scale(1.15); }
+      30%       { transform: scale(1); }
+      45%       { transform: scale(1.08); }
+      60%       { transform: scale(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 16px;
+      color: var(--rose);
+      opacity: 0;
+      animation: fadeUp 1s ease 2s forwards, bob 2s ease-in-out 3s infinite;
+    }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    /* ── COUNTER ── */
+    #counter {
+      background: none;
+      text-align: center;
+    }
+
+    .counter-label {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(18px, 3vw, 26px);
+      color: var(--gold);
+      margin-bottom: 40px;
+    }
+
+    .counter-grid {
+      display: flex;
+      gap: clamp(12px, 3vw, 32px);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .counter-card {
+      background: white;
+      border: 1.5px solid var(--blush);
+      border-radius: 20px;
+      padding: 28px 36px;
+      min-width: 120px;
+      box-shadow: 0 8px 32px rgba(232,120,138,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .counter-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(253,232,237,0.5), transparent);
+    }
+
+    .counter-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 700;
+      color: var(--deep);
+      display: block;
+    }
+
+    .counter-unit {
+      font-size: clamp(11px, 1.5vw, 14px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-top: 6px;
+    }
+
+    /* ── PHOTO GALLERY ── */
+    #gallery {
+      flex-direction: column;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 52px);
+      font-style: italic;
+      color: var(--deep);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(14px, 2.5vw, 20px);
+      color: var(--rose);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .photo-slot {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #fde8ed, #fff0f3);
+      border: 2px dashed var(--blush);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 20px rgba(232,120,138,0.1);
+    }
+
+    .photo-slot:hover {
+      transform: translateY(-6px) rotate(0.5deg);
+      box-shadow: 0 12px 40px rgba(232,120,138,0.22);
+    }
+
+    .photo-slot img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-placeholder {
+      font-size: 40px;
+      margin-bottom: 8px;
+    }
+
+    .photo-placeholder-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 14px;
+      color: var(--rose);
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(107,39,55,0.85), transparent);
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      font-size: 16px;
+      padding: 20px 12px 12px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .photo-slot:hover .photo-caption { opacity: 1; }
+
+    /* ── LETTER ── */
+    #letter {
+      text-align: center;
+    }
+
+    .letter-card {
+      max-width: 680px;
+      background: white;
+      border-radius: 24px;
+      padding: clamp(32px, 6vw, 64px);
+      box-shadow:
+        0 2px 4px rgba(232,120,138,0.05),
+        0 8px 32px rgba(232,120,138,0.12),
+        0 32px 64px rgba(232,120,138,0.08);
+      border: 1px solid rgba(245,184,196,0.3);
+      position: relative;
+    }
+
+    .letter-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 32px;
+      font-family: 'Playfair Display', serif;
+      font-size: 120px;
+      color: var(--blush);
+      line-height: 1;
+    }
+
+    .letter-text {
+      font-size: clamp(16px, 2.2vw, 20px);
+      line-height: 1.9;
+      color: var(--text);
+      font-weight: 300;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    .letter-text strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--deep);
+    }
+
+    .letter-sig {
+      margin-top: 32px;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(20px, 3vw, 28px);
+      color: var(--rose);
+    }
+
+    /* ── REASONS ── */
+    #reasons {
+      flex-direction: column;
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 860px;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .reason-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      border: 1px solid rgba(245,184,196,0.4);
+      box-shadow: 0 4px 20px rgba(232,120,138,0.08);
+      transition: transform 0.25s ease;
+    }
+
+    .reason-card:hover { transform: translateY(-4px); }
+
+    .reason-emoji { font-size: 32px; margin-bottom: 10px; }
+
+    .reason-text {
+      font-size: clamp(14px, 1.8vw, 16px);
+      line-height: 1.6;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* ── FINAL ── */
+    #final {
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .final-big {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 7vw, 80px);
+      font-weight: 700;
+      color: var(--deep);
+      line-height: 1.1;
+    }
+
+    .final-big em {
+      display: block;
+      font-style: italic;
+      color: var(--rose);
+      font-size: 0.75em;
+    }
+
+    .final-note {
+      margin-top: 28px;
+      max-width: 460px;
+      font-size: clamp(15px, 2vw, 18px);
+      line-height: 1.8;
+      color: #7a4550;
+      font-weight: 300;
+    }
+
+    .final-hearts {
+      margin-top: 40px;
+      font-size: clamp(24px, 5vw, 48px);
+      letter-spacing: 8px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+    /* ── Dividers ── */
+    .divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--blush), transparent);
+      margin: 0 auto 40px;
+    }
+
+    /* ── Decorative corners ── */
+    .corner-deco {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.25;
+    }
+    .corner-deco.tl { top: 24px; left: 24px; }
+    .corner-deco.tr { top: 24px; right: 24px; }
+    .corner-deco.bl { bottom: 24px; left: 24px; }
+    .corner-deco.br { bottom: 24px; right: 24px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 500px) {
+      .counter-card { padding: 20px 22px; min-width: 80px; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating petals -->
+<div class="bg-gradient"></div>
+<div id="petals"></div>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <span class="corner-deco tl">🌸</span>
+  <span class="corner-deco tr">🌸</span>
+  <span class="corner-deco bl">🌸</span>
+  <span class="corner-deco br">🌸</span>
+
+  <p class="hero-badge">✨ One whole year of us ✨</p>
+
+  <h1 class="hero-title">
+    Happy
+    <span>1st Anniversary</span>
+  </h1>
+
+  <p class="hero-date">27 · May · 2025 — 27 · May · 2026</p>
+
+  <span class="hero-heart">💕</span>
+
+  <p class="scroll-hint">scroll down ↓</p>
+</section>
+
+<!-- ── COUNTER ── -->
+<section id="counter">
+  <p class="counter-label">We've been together for…</p>
+  <div class="counter-grid">
+    <div class="counter-card">
+      <span class="counter-num" id="cnt-days">365</span>
+      <div class="counter-unit">Days</div>
+    </div>
+    <div class="counter-card">
+      <span class="counter-num" id="cnt-hours">8760</span>
+      <div class="counter-unit">Hours</div>
+    </div>
+    <div class="counter-card">
+      <span class="counter-num" id="cnt-mins">525600</span>
+      <div class="counter-unit">Minutes</div>
+    </div>
+    <div class="counter-card">
+      <span class="counter-num" id="cnt-secs">31536000</span>
+      <div class="counter-unit">Seconds</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section id="gallery">
+  <h2 class="section-title">Our favourite moments</h2>
+  <p class="section-sub">Replace each card with a photo of us 🌸</p>
+  <div class="divider"></div>
+
+  <div class="photo-grid">
+    <!-- PHOTO SLOT 1 -->
+    <div class="photo-slot">
+      <img src="1.jpg" alt="Our moment"> 
+      <!-- REPLACE: swap the div below with: <img src="YOUR_PHOTO_1.jpg" alt="Caption here"> -->
+      <div class="photo-caption">LOVE</div>
+    </div>
+
+    <!-- PHOTO SLOT 2 -->
+    <div class="photo-slot">
+      <div class="photo-placeholder">📸</div>
+      <div class="photo-placeholder-text">Your Photo Here<br><small>Replace with img tag</small></div>
+      <div class="photo-caption">Caption for Photo 2</div>
+    </div>
+
+    <!-- PHOTO SLOT 3 -->
+    <div class="photo-slot">
+      <div class="photo-placeholder">📸</div>
+      <div class="photo-placeholder-text">Your Photo Here<br><small>Replace with img tag</small></div>
+      <div class="photo-caption">Caption for Photo 3</div>
+    </div>
+
+    <!-- PHOTO SLOT 4 -->
+    <div class="photo-slot">
+      <div class="photo-placeholder">📸</div>
+      <div class="photo-placeholder-text">Your Photo Here<br><small>Replace with img tag</small></div>
+      <div class="photo-caption">Caption for Photo 4</div>
+    </div>
+    <!-- PHOTO SLOT 5 -->
+    <div class="photo-slot">
+      <div class="photo-placeholder">📸</div>
+      <div class="photo-placeholder-text">Your Photo Here<br><small>Replace with img tag</small></div>
+      <div class="photo-caption">Caption for Photo 5</div>
+    </div>
+    <!-- PHOTO SLOT 6 -->
+    <div class="photo-slot">
+      <div class="photo-placeholder">📸</div>
+      <div class="photo-placeholder-text">Your Photo Here<br><small>Replace with img tag</small></div>
+      <div class="photo-caption">Caption for Photo 6</div>
+    </div>
+    <!-- PHOTO SLOT 7 -->
+    <div class="photo-slot">
+      <div class="photo-placeholder">📸</div>
+      <div class="photo-placeholder-text">Your Photo Here<br><small>Replace with img tag</small></div>
+      <div class="photo-caption">Caption for Photo 7</div>
+    </div>
+    <!-- PHOTO SLOT 8 -->
+    <div class="photo-slot">
+      <div class="photo-placeholder">📸</div>
+      <div class="photo-placeholder-text">Your Photo Here<br><small>Replace with img tag</small></div>
+      <div class="photo-caption">Caption for Photo 8</div>
+    </div>
+    <!-- PHOTO SLOT 9 -->
+    <div class="photo-slot">
+      <div class="photo-placeholder">📸</div>
+      <div class="photo-placeholder-text">Your Photo Here<br><small>Replace with img tag</small></div>
+      <div class="photo-caption">Caption for Photo 9</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LETTER ── -->
+<section id="letter">
+  <h2 class="section-title">A little note for you</h2>
+  <div class="divider"></div>
+  <div class="letter-card">
+    <p class="letter-text">
+      My dearest <strong>Anisha</strong>,<br><br>
+      A whole year has passed, and still every morning I wake up grateful that
+      you chose me. You've shown me what it feels like to be truly seen —
+      your laugh, your warmth, the way you make even the ordinary days feel
+      like something worth remembering.<br><br>
+      Thank you for being my comfort and my adventure, all at once.
+      I love you more than any words can say, and I can't wait to give us
+      a thousand more tomorrows.<br><br>
+      <em><!-- 💬 Write your personal message here. Replace all the text above between the p tags. --></em>
+    </p>
+    <p class="letter-sig">
+      Forever yours, <strong>Alvi</strong> 💕
+    </p>
+  </div>
+</section> 
+
+<!-- ── REASONS ── -->
+<section id="reasons">
+  <h2 class="section-title">Why I love you</h2>
+  <p class="section-sub">Just a few of the reasons… 🌷</p>
+  <div class="divider"></div>
+
+  <div class="reasons-grid">
+    <!-- REPLACE each reason-text with your own! -->
+    <div class="reason-card">
+      <div class="reason-emoji">😂</div>
+      <p class="reason-text">The way you make me laugh like no one else can</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-emoji">🤗</div>
+      <p class="reason-text">How safe I feel in your arms</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-emoji">✨</div>
+      <p class="reason-text">The way you see beauty in everything</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-emoji">🌙</div>
+      <p class="reason-text">Our late-night conversations that go on forever</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-emoji">🍕</div>
+      <p class="reason-text"><!-- Add your own cute reason here --></p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-emoji">💫</div>
+      <p class="reason-text"><!-- Add your own cute reason here --></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL ── -->
+<section id="final">
+  <p class="hero-badge">✨ May 27, 2026 ✨</p>
+  <h2 class="final-big">
+    Here's to forever,
+    <em>[Her Name]</em>
+  </h2>
+  <p class="final-note">
+    One year down, a lifetime to go.
+    Thank you for being my person — yesterday, today, and every day after. 🌸
+    <!-- REPLACE: Edit this closing message to your own words -->
+  </p>
+  <div class="final-hearts">💕 💖 💕</div>
+</section>
+
+<script>
+  /* ── Falling petals ── */
+  const emojis = ['🌸','🌺','🌼','🌷','✿','❀'];
+  const container = document.getElementById('petals');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = emojis[i % emojis.length];
+    p.style.left = (Math.random() * 100) + 'vw';
+    p.style.animationDuration = (6 + Math.random() * 10) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    p.style.fontSize = (12 + Math.random() * 18) + 'px';
+    container.appendChild(p);
+  }
+
+  /* ── Live counter from anniversary date ── */
+  const anniversary = new Date('2025-05-27T00:00:00');
+
+  function update() {
+    const now = new Date();
+    const diff = now - anniversary;
+    const totalSecs = Math.floor(diff / 1000);
+    const totalMins = Math.floor(totalSecs / 60);
+    const totalHours = Math.floor(totalMins / 60);
+    const totalDays = Math.floor(totalHours / 24);
+
+    document.getElementById('cnt-days').textContent  = totalDays.toLocaleString();
+    document.getElementById('cnt-hours').textContent = totalHours.toLocaleString();
+    document.getElementById('cnt-mins').textContent  = totalMins.toLocaleString();
+    document.getElementById('cnt-secs').textContent  = totalSecs.toLocaleString();
+  }
+  update();
+  setInterval(update, 1000);
+</script>
+</body>
+</html>
