@@ -431,7 +431,35 @@
     .corner-deco.tr { top: 24px; right: 24px; }
     .corner-deco.bl { bottom: 24px; left: 24px; }
     .corner-deco.br { bottom: 24px; right: 24px; }
+/* ── GIF STRIPS ── */
+#gif-strips {
+  flex-direction: column;
+}
 
+.gif-strip-row {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 12px 0 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--blush) transparent;
+}
+
+.gif-strip-row img {
+  height: 280px;
+  width: auto;
+  border-radius: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(232,120,138,0.2);
+  border: 3px solid white;
+  transition: transform 0.3s ease;
+}
+
+.gif-strip-row img:hover {
+  transform: translateY(-6px) scale(1.03);
+}
     /* ── Responsive ── */
     @media (max-width: 500px) {
       .counter-card { padding: 20px 22px; min-width: 80px; }
@@ -551,6 +579,20 @@
       <img src="16.jpeg" alt="Our moment"> 
       <!-- REPLACE: swap the div below with: <img src="YOUR_PHOTO_1.jpg" alt="Caption here"> -->
       <div class="photo-caption">LOVE</div>
+  </div>
+</section>
+<!-- ── GIF STRIPS ── -->
+<section id="gif-strips">
+  <h2 class="section-title">Our little moments 🎞️</h2>
+  <div class="divider"></div>
+  <div class="gif-strip-row">
+    <img src="1.gif" alt="moment 1">
+    <img src="2.gif" alt="moment 2">
+    <img src="3.gif" alt="moment 3">
+    <img src="4.gif" alt="moment 4">
+    <img src="5.gif" alt="moment 5">
+    <img src="6.gif" alt="moment 6">
+    <img src="7.gif" alt="moment 7">
   </div>
 </section>
 
