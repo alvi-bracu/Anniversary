@@ -486,27 +486,6 @@
   <source src="./song.mp3" type="audio/mpeg">
 </audio>
 
-<button id="music-btn">▶ Play Music 🎵</button>
-
-<script>
-const music = document.getElementById('bg-music');
-const btn = document.getElementById('music-btn');
-
-btn.addEventListener('click', async () => {
-  try {
-    if (music.paused) {
-      await music.play();
-      btn.innerText = '⏸ Pause Music 🎵';
-    } else {
-      music.pause();
-      btn.innerText = '▶ Play Music 🎵';
-    }
-  } catch (err) {
-    console.log(err);
-    alert("Browser blocked audio playback");
-  }
-});
-</script>
 
 
 <!-- Floating petals -->
