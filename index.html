@@ -470,16 +470,30 @@
 </head>
 <body>
 
-<audio id="bg-music" 
-  src="https://drive.google.com/uc?export=download&id=12c9bOCPpfN509aHNx7dkxlI9G2PIdbaS" 
-  loop preload="auto">
-  </audio>
-<button onclick="document.getElementById('bg-music').play()" 
+<audio id="bg-music" loop preload="auto">
+  <source src="https://docs.google.com/uc?export=open&id=12c9bOCPpfN509aHNx7dkxlI9G2PIdbaS" type="audio/mpeg">
+</audio>
+<button id="music-btn" onclick="toggleMusic()"
   style="position:fixed;bottom:24px;right:24px;z-index:999;
   background:#e8788a;color:white;border:none;border-radius:50px;
-  padding:12px 24px;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(232,120,138,0.4)">
+  padding:12px 24px;font-size:16px;cursor:pointer;
+  box-shadow:0 4px 20px rgba(232,120,138,0.4);
+  font-family:'Dancing Script',cursive;">
   ▶ Play Music 🎵
 </button>
+<script>
+  const music = document.getElementById('bg-music');
+  const btn = document.getElementById('music-btn');
+  function toggleMusic() {
+    if (music.paused) {
+      music.play();
+      btn.textContent = '⏸ Pause Music 🎵';
+    } else {
+      music.pause();
+      btn.textContent = '▶ Play Music 🎵';
+    }
+  }
+</script>
 
 
 <!-- Floating petals -->
